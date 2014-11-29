@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>海洋学研究情报服务导航网</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+ <style>
+ <!-- base style -->
+ 	  body{font-size: 12px;font-family:微软雅黑;  } 
+    h1,h2,h3,h4,h5,h6 {font-family: Bitter, serif;}
+ /* 顶部导航条 */
+    #topNav a{color:#90a9a9;}
+    #topNav a:hover{color:#ffffff;}
+    #topNav h4{color:#ffffff; padding-left:30px; line-height: 30px; padding-right: 7px;}
+ /*  弹出的输入框间距 */
+  .modal-body div{margin-bottom: 10px;}
+ /* 顶部导航栏的搜索框 */
+    #searchLogo{color:#ffffff; }
+ /* 头部图片 */
+    #headerPicture{width:1170px;height:160px; margin:22px auto; }
+ /* 子页面导航条 */
+  #subpageBar{width: 1170px; margin-right: auto; margin-left: auto; font-size:16px; background-color:#3a3a3a}
+  #subpageBar a{color:#eaeaea;}
+  #subpageBar a:hover{background-color:#0066ff}    
+  .subpageList{font-size:16px;color:#eaeaea; background-color:#3a3a3a;}
+  .subpageBar{border-right:1px black solid; }
+  #noRightBottom{border-right: none;}
+  /* 推荐区 */
+  #recommend{width: 680px; height: 330px;position: absolute;top:350px; left: 90px; }
+  /* 推荐标题 */
+  #recommend span{font-size: 21px; position: relative;top: 10px;color:#8778b6;}
+  /* 分割线 */
+  #recommend hr{width: 680px;height:3px;background-color:#c5ebf9;top:15px;}
+  /* 推荐区轮播图片 */
+  #switchImg{height:252px;width:392px;position: relative;top:-5px;} 
+  /* 图片遮罩 */
+  #imgMark{height:80px;width: 100%;position:relative;top:-80px; border: 1px red solid;color:#d3e2e9;background: url(popularizationScienceImg/masked-base.png);text-indent:10px; padding-top: 5px;}
+  /* 推荐列表 */
+  #recommendList{height:252px;width: 100%;position:relative;top:-337px;left:365px; font-size:16px;list-style: none; line-height:35px;}
+  #recommendList a{color: #666666;}
+  #recommendList a:hover{color:#0078b6;}
+  /* 右侧资讯列表 */
+  #slide-right{position:absolute;top:-6px; left:720px; width:450px;}
+  #slide-right h3{font-size:22px;color:#8778b6;margin-bottom:-7px;}
+  #slide-right hr{height:3px;width: 450px; }
+  #slide-right a{margin-top: -4px;}
+  /* 分类阅读 */
+  #contentReading{width:1170px;height:750px;position:relative;top:10px;margin-top: 10px;}
+  #contentReading a:hover{color:#0078b6;}
+  .content-title{font-size:22px;}
+  #contentTitle{color:#8778b6;}
+  #contentReading  hr{width: 1170px; position: absolute;left:0;top:35px;}
+  /* 分类阅读左侧顶部 */
+  #left-top{position: absolute;;top:70px;}
+  .media-body{width:250px;}
+  .media-body p{font-size: 14px;display: inline-block;color:#0078b6;}
+  .introduction{font-size: 12px;color:#999999}
+  #left-top ul{position: absolute;top:165px;left:-24px;line-height:25px;}
+  #left-top a{color:#666666;cursor:pointer;}
+  #left-top a:hover{color:#0078b6;}
+   /* 分类阅读左侧低部 */
+  #left-buttom{position: absolute;top:720px;}
+  #left-buttom ul{position:absolute;top:170px;left:-24px;line-height:25px; }
+  #left-buttom a{color:#666666;cursor:pointer;}
+  #left-buttom a:hover{color:#0078b6;}
+  /* 分类阅读右侧顶部 */
+  #right-top{position: absolute;top:423px;left:700px;width:500px;}
+  #right-top ul{position: absolute;top: 165px;left:-24px;line-height:25px;}
+  #right-top a{color:#666666;cursor:pointer;}
+  #right-top a:hover{color:#0078b6;}
+  /* 分类阅读右侧低部 */
+  #right-buttom{position: absolute;top:720px;left:700px;width:500px;}
+  #right-buttom ul{position: absolute;top:172px;left:-24px;line-height:25px;}
+  #right-buttom a{color:#666666;cursor:pointer;}
+  #right-buttom a:hover{color:#0078b6;}
+  /* 页面底部分割线 */
+  #footerDivider{ height:3px;width:1170px;background-color:#0066ff; position: absolute;left:70px;top:1410px;}
+  /* 页面底部 */
+  #footer{text-align: center;background-color:#dddddd;position: absolute; top:1414px;left:70px; width:1170px;height:120px;}
+</style>
+</head>
+
+<body>
+
+<!-- 顶部导航条 -->
+<div class="navbar navbar-inverse" role="navigation" id="topNav">
+<div class="navbar-header">
+  <h4>科普知识</h4>
+</div>
+    <ul class="nav navbar-nav">
+        <li><a href="##" data-toggle="modal" data-target="#normalUser">用户登录</a></li>
+    <li><a href="##"  class="dropdown-toggle" data-toggle="modal" data-target="#member">会员登陆</a></li>
+       <li><a href="##" data-toggle="modal" data-target="#administrator">管理员登陆</a></li>   
+       <li><a href="##" data-toggle="modal" data-target="#subscribe">邮箱订阅服务</a></li>
+    </ul>
+    
+<!-- 顶部导航栏的搜索框 -->
+  <form action="##" class="navbar-form navbar-right" rol="search">
+      <div class="form-group">
+          <input type="text" class="form-control" placeholder="请输入关键词" />
+          <span class="glyphicon glyphicon-search" id="searchLogo"></span>
+      </div>
+  </form>
+</div>
+
+
+<!-- 顶部导航栏的弹出框 -->
+  <!-- 顶部导航栏的弹出框 -->
+    <!-- 用户登录弹出框 -->
+<div class="modal fade" id="normalUser" tabindex="-1" role="dialog" aria-labelledby="modal-label"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">X</span></button>
+                    <h4 class="modal-title" id="modal-label">用户登录</h4>
+                </div>
+                  <div class="modal-body">
+                    <!-- 用户登录 -->
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">用户账号 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">用户密码 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                   <!-- END -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- 会员登录弹出框 -->
+        <div class="modal fade" id="member" tabindex="-1" role="dialog" aria-labelledby="modal-label"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">X</span></button>
+                    <h4 class="modal-title" id="modal-label">会员登陆</h4>
+                </div>
+                  <div class="modal-body">
+                    <!-- 用户登录 -->
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">会员账号 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">会员密码 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                   <!-- END -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 管理员登录弹出框 -->
+
+     <div class="modal fade" id="administrator" tabindex="-1" role="dialog" aria-labelledby="modal-label"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">X</span></button>
+                    <h4 class="modal-title" id="modal-label">管理员登录</h4>
+                </div>
+                  <div class="modal-body">
+                    <!-- 用户登录 -->
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">管理员账号 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">管理员密码 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                   <!-- END -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 邮箱订阅弹出框 -->
+
+     <div class="modal fade" id="subscribe" tabindex="-1" role="dialog" aria-labelledby="modal-label"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">X</span></button>
+                    <h4 class="modal-title" id="modal-label">邮箱订阅</h4>
+                </div>
+                  <div class="modal-body">
+                    <!-- 用户登录 -->
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">邮箱账号 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                   <!-- END -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 头部图片 -->
+<div id="headerPicture">
+    <img src="indexImge/header.jpg" alt="headerPicture" />
+</div>
+
+<!-- 子页面导航条 -->
+<div class="navbar navbar-inverse " role="navigation" id="subpageBar">
+  <ul class="nav navbar-nav">
+     <!-- home -->
+    <li class="subpageBar"><a href="##"style="padding-right:80px;padding-left:50px;">返回首页</a></li>
+    <!-- fist -->
+    <li class="dropdown subpageBar">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle" style="padding-right:80px;padding-left:53px;">海洋科学<span class="caret"></span></a>
+            <ul class="dropdown-menu subpageList">
+            <li><a href="##">科普知识</a></li>
+            <li><a href="##">军事海洋战略与发展</a></li>           
+            <li><a href="##">海洋资源环境</a></li>            
+            <li><a href="##">极地海洋与全球变化</a></li>
+            <li><a href="##">涉海期刊学术资料</a></li>
+            </ul>
+    </li>
+    <!-- second -->
+    <li class="dropdown subpageBar">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle" style="padding-right:80px;">科技地图<span class="caret"></span></a>
+            <ul class="dropdown-menu subpageList">
+            <li><a href="##">各国发展地图</a></li>
+            <li><a href="##">机构发展地图</a></li>
+            <li><a href="##">研究热点地图</a></li>
+            </ul>
+    </li>
+    <!-- third -->
+    <li class="dropdown subpageBar">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle" style="padding-right:80px;">资源信息提供<span class="caret"></span></a>
+            <ul class="dropdown-menu subpageList">
+            <li><a href="##">期刊论文</a></li>
+            <li><a href="##">专著</a></li>
+            <li><a href="##">报告</a></li>
+            <li><a href="##">专利</a></li>
+            <li><a href="##">课题</a></li>
+            <li><a href="##">合作机构</a></li>
+            <li><a href="##">资源导航</a></li>
+            <li><a href="##">专家库</a></li>
+            </ul>
+    </li>
+    <!-- fourth -->
+    <li class="dropdown subpageBar">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle" style="padding-right:80px;">情报产品<span class="caret"></span></a>
+            <ul class="dropdown-menu subpageList">
+            <li><a href="##">研究报告</a></li>
+            <li><a href="##">简报</a></li>
+            </ul>
+    </li>
+    <!-- fifth -->
+    <li class="dropdown subpageBar" id="noRightBottom">    <!-- id为取消右分割线 -->
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle" style="padding-right:80px;">互动专栏<span class="caret"></span></a>
+            <ul class="dropdown-menu subpageList">
+            <li><a href="##">网路调查</a></li>
+            <li><a href="##">留言板</a></li>
+            <li><a href="##">征稿启事</a></li>
+            </ul>
+    </li> 
+  </ul>
+</div>
+  
+  <!-- 推荐阅读 -->
+  <div id="recommend">
+  <span>最新推荐</span>
+  <hr />
+  <!-- 推荐阅读 轮播图片 -->
+  <div id="switchImg">
+    <div>
+      <img id="switchPicture" src="indexImge/newestPushImg-right-top.jpg"  style="height:252px; width:392px; display: block; alt="" />
+      <p id="imgMark">
+        海星是无脊椎动物的一类，非鱼类。体扁，星形，具腕，现存1,800种，见于各海洋，太平洋北部的种类最多。辐径165公分，多数20∼30公分。腕中空，有短棘和叉棘覆盖。
+      </p>
+    </div>
+    <!-- 推荐阅读 列表 -->
+    <ul id="recommendList">
+      <li><a href="#">看《星际穿越》如何回应科学吐槽</a></li>
+      <li><a href="#">气候变暖有所放缓，但不会停止</a></li>
+      <li><a href="#">二胎妈妈，你的身体条件合适吗？</a></li>
+      <li><a href="#">为什么狗喝水总是洒一地？</a></li>
+      <li><a href="#">美国农民为什么选择转基因？</a></li>
+      <li><a href="#">卢浮宫也可以包场游览吗？</a></li>
+      <li><a href="#">在公众场所蹭网会被黑客暗算吗？</a></li>
+    </ul>
+  </div>
+
+ <!-- 左侧相关信息列表  -->
+ <div class="list-group" id="slide-right">
+  <h3>科普相关资讯</h3>
+  <hr />
+  <a href="#" class="list-group-item" >
+    <h4 class="list-group-item-heading">子弹射穿人体，“进口”大还是“出口”大？</h4>
+    <p class="list-group-item-text">高速的子弹击中人体后，会形成不同于一般创伤的...</p>
+  </a>
+  <a href="#" class="list-group-item" >
+    <h4 class="list-group-item-heading">美国的“大陪审团（Grand Jury）”是什么？</h4>
+    <p class="list-group-item-text">在弗格森枪击案中，地方法院的大陪审团通过审查... </p>
+  </a>
+  <a href="#" class="list-group-item">
+    <h4 class="list-group-item-heading">为什么桃子有毛，而油桃没有毛？</h4>
+    <p class="list-group-item-text">油桃其实是桃的一个变种，由于基因的变化产生了... </p>
+  </a>
+  <a href="#" class="list-group-item">
+    <h4 class="list-group-item-heading">喝水这个事在医学上到底有什么作用？</h4>
+    <p class="list-group-item-text">首先说，此处”多喝水“指的应该是建议足量饮水... </p>
+  </a>
+</div>
+
+<!-- 分类阅读  -->
+<div id="contentReading">
+    <h3 id="contentTitle">分类阅读</h3>
+    <hr />
+    <!-- 分类阅读-海洋发展  -->
+    <div id="left-top">
+        <h3 class="content-title">海洋发展</h3>       
+        <div class="media">
+          <a class="pull-left" href="#">
+          <img class="media-object" src="indexImge/newestPushImg-right-top.jpg" style="height:100px; width:160px; display: block; alt="">
+          </a>
+        <div class="media-body">
+         <h4 class="media-heading"><a href="#">汽车越大或者越重就越安全吗？</a></h4>
+         <div class="introduction">重量是影响安全性的因素之一。从物理上说,重量的优势，是在其它条件相同的情况下说的。这显然吧…… <p><a href="#">详细</a></p></div>
+       </div>
+       </div>
+        <ul>
+          <li><a>子弹射穿人体，“进口”大还是“出口”大？</a></li>
+          <li><a><a>火有影子吗？</a></li>
+          <li><a>在公众场所蹭网会被黑客暗算吗？</a></li>
+          <li><a>哪些纯净物能直接作为汽油机、柴油机的燃料？</a></li>
+       </ul>
+   </div>
+</div>
+ 
+<!-- 分类阅读-海洋生物  -->
+<div id="left-buttom">
+       <h3 class="content-title">海洋生物</h3>
+       <div class="media">
+          <a class="pull-left" href="#">
+          <img class="media-object" src="indexImge/newestPushImg-right-top.jpg" style="height:100px; width:160px; display: block; alt="">
+          </a>
+        <div class="media-body">
+          <h4 class="media-heading"><a href="#">汽车越大或者越重就越安全吗？</a></h4>
+          <div class="introduction">重量是影响安全性的因素之一。从物理上说,重量的优势，是在其它条件相同的情况下说的。这显然吧…… <p><a href="#">详细</a></p></div>
+       </div>
+      </div>
+      <ul>
+          <li><a>子弹射穿人体，“进口”大还是“出口”大？</a></li>
+          <li><a><a>火有影子吗？</a></li>
+          <li><a>在公众场所蹭网会被黑客暗算吗？</a></li>
+          <li><a>哪些纯净物能直接作为汽油机、柴油机的燃料？</a></li>
+      </ul>
+</div>
+
+<!-- 分类阅读-海洋科技  -->
+<div id="right-top">
+       <h3 class="content-title">海洋科技</h3>
+       <div class="media">
+          <a class="pull-left" href="#">
+          <img class="media-object" src="indexImge/newestPushImg-right-top.jpg" style="height:100px; width:160px; display: block; alt="">
+          </a>
+        <div class="media-body">
+          <h4 class="media-heading"><a href="#">汽车越大或者越重就越安全吗？</a></h4>
+          <div class="introduction">重量是影响安全性的因素之一。从物理上说,重量的优势，是在其它条件相同的情况下说的。这显然吧…… <p><a href="#">详细</a></p></div>
+       </div>
+      </div>
+      <ul>
+          <li><a>子弹射穿人体，“进口”大还是“出口”大？</a></li>
+          <li><a><a>火有影子吗？</a></li>
+          <li><a>在公众场所蹭网会被黑客暗算吗？</a></li>
+          <li><a>哪些纯净物能直接作为汽油机、柴油机的燃料？</a></li>
+      </ul>
+</div>
+
+
+<!-- 分类阅读-海洋故事  -->
+<div id="right-buttom">
+       <h3 class="content-title">海洋科技</h3>
+       <div class="media">
+          <a class="pull-left" href="#">
+          <img class="media-object" src="indexImge/newestPushImg-right-top.jpg" style="height:100px; width:160px; display: block; alt="">
+          </a>
+        <div class="media-body">
+          <h4 class="media-heading"><a href="#">汽车越大或者越重就越安全吗？</a></h4>
+          <div class="introduction">重量是影响安全性的因素之一。从物理上说,重量的优势，是在其它条件相同的情况下说的。这显然吧…… <p><a href="#">详细</a></p></div>
+       </div>
+      </div>
+      <ul>
+          <li><a>子弹射穿人体，“进口”大还是“出口”大？</a></li>
+          <li><a><a>火有影子吗？</a></li>
+          <li><a>在公众场所蹭网会被黑客暗算吗？</a></li>
+          <li><a>哪些纯净物能直接作为汽油机、柴油机的燃料？</a></li>
+      </ul>
+</div>
+
+</div>
+<!-- 页面底部分割线 -->
+<div id="footerDivider"></div>
+<!-- 页面底部 -->
+<div id="footer">
+  <p align="center">&nbsp;</p>
+  <p align="center">版权所有 © 2014 XXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+  <p align="center">主管：国家海洋局　主办：中国海洋学会　　出版：海洋出版社</p>
+  <p align="center">编辑部地址: 浙江省海洋局　　邮编：10086   电话：18265384667</p>
+  <p align="center">&nbsp;</p>
+</div>
+<!-- JavaScript -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+$(function(){
+   var curIndex=0; 
+   var timeInterval=4000; 
+   var arr=new Array(); 
+   arr[0]="indexImge/newestPushImg-right-middle.jpg"; 
+   arr[1]="indexImge/newestPushImg-right-top.jpg"; 
+   arr[2]="indexImge/newestPushImg-left.jpg"; 
+   var p=new Array();
+   p[1]="海星是无脊椎动物的一类，非鱼类。体扁，星形，具腕，现存1,800种，见于各海洋，太平洋北部的种类最多。辐径165公分，多数20∼30公分。腕中空，有短棘和叉棘覆盖。";
+   p[0]="海龟，爬行纲，海龟科,头顶有一对前额鳞，四肢如桨，前肢长于后肢，内侧指、趾各有一爪，头、颈和四肢不能缩入甲内，主要以海藻为食。";
+   p[2]="海豚是与鲸鱼和鼠海豚密切相关的水生哺乳动物，大约于1000万年前的中新世进化而成，广泛生活在大陆架附近的浅海里，偶见于淡水之中。";
+   setInterval(changeImg,timeInterval);  
+   function changeImg() 
+    { 
+    var obj=$('#switchPicture'); 
+    if (curIndex==arr.length-1)  
+    { 
+        curIndex=0; 
+    } 
+    else 
+    { 
+        curIndex+=1; 
+    } 
+    obj.attr('src',arr[curIndex]);
+    $('#imgMark').text(p[curIndex]);
+    } 
+})
+</script>
+</body>
+</html>

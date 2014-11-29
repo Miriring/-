@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>海洋学研究情报服务导航网</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+ <style>
+ <!-- base style -->
+ 	body{font-size: 12px; font-family:微软雅黑;}
+  a:hover{color: #06F;}
+  h1,h2,h3,h4,h5,h6 {font-family: Bitter, serif;}
+ /* 顶部导航条 */
+ 	#topNav a{color:#90a9a9;}
+ 	#topNav a:hover{color:#ffffff;}
+  #topNav h4{color:#ffffff; padding-left:30px; line-height: 30px; padding-right: 7px;}
+ /* 顶部导航栏的搜索框 */
+ 	#searchLogo{color:#ffffff; }
+ /* 头部图片 */
+	#headerPicture{width:1170px;height:160px; margin:22px auto; }
+  /* 子页面导航条 */
+  #subpageBar{width: 1170px; margin-right: auto; margin-left: auto; font-size:16px; background-color:#3a3a3a}
+  #subpageBar a{color:#eaeaea;}
+  #subpageBar a:hover{background-color:#0066ff}    
+  .subpageList{font-size:16px;color:#eaeaea; background-color:#3a3a3a;}
+  .subpageBar{border-right:1px black solid; }
+  #noRightBottom{border-right: none;}
+
+  /*  最新文章推荐区 */
+   #newestPush{width: 1176px; height:450px; margin:0 auto;}
+   #newestPushImg-left{width:630px; height:416px; float:left;}
+   #newestPushImg-left img{max-width:630px;width:630px;max-height:416px;height:416px;padding-right:1px;}
+   #newestPushImg-right-top{width:539px;height:138px;float:left;}
+   #newestPushImg-right-top img{max-width:539px;width:539px;max-height:138px;height:138px; padding-bottom:1px;}
+   #newestPushImg-right-middle{width:539px;height:138px;float:left;}
+   #newestPushImg-right-middle img{max-width:539px;width:539px;max-height:138px;height:138px; padding-bottom:1px;}
+   #newestPushImg-right-buttom{width:539px;height:140px;float:left;}
+   #newestPushImg-right-buttom img{max-width:539px;width:539px;max-height:140px;height:140px;}
+    
+  /*  精选模块分隔条 */ 
+   #dividingStrip{width:1170px;margin: 0 auto;}
+   #dividerBox{width: 57px;height: 57px; background-color:#0066ff;color:#ffffff; font-size: 20px; text-align: center; float:left;}
+   #strip{width: 1113px; height: 41px; background-color:#3a3a3a; float: left; margin-top: 9px;}
+  /*  精选模块分隔条滚动文字 */ 
+  #passWords{line-height:40px;color:#dadada;padding-left: 10px; }
+  /*  精选模块左  TAB切页*/ 
+    #TabLeft{width:350px;margin:40px 0 0 -60px; }
+	/*  精选模块左  主要内容 */ 
+	#content{width:768px; height: 452px; margin-left:-75px;position: absolute; top: 910px;left:200; }
+  #contentLeft{border: 1px solid #dadada;}
+  .contentBorder{border: 1px solid #dadada;}
+  .btnMargin{margin-left: 0px;}
+  .caption h3{margin-left: 10px; border-bottom: 2px dashed #dadada;}
+  .caption p{margin-left: 10px; }
+   /*  精选模块右  TAB切页*/ 
+   #TabRight{width:630px; height:416px;}
+   /*  精选模块右  列表内容*/ 
+  #contentRightWrap{width: 280px;height:500px;position:absolute;top:0;right: -400px; }
+  #contentlistRight{position: absolute;top:50px;left:0;}
+  .media-body{border-bottom:2px dashed #dadada; }
+  /*  底部分隔线 */ 
+  #footerDivider{ height:3px;width:1200px;background-color:#0066ff; position: absolute; top:444px;}
+  #footer{text-align: center;background-color:#dddddd; margin-top:445px;width:1200px}
+
+   /*  推荐图片遮罩 */
+  #marsk-right-top{width:539px;height:138px;position: absolute;;top:-583px; right:-416px; text-align: center; color:#979797;background:url(indexImge/masked-base.png); }
+  #marsk-right-middle{width:539px;height:137px;position: absolute;;top:-444px; right:-416px; text-align: center; color:#979797; background:url(indexImge/masked-base.png);}
+  #marsk-right-buttom{width:539px;height:137px;position: absolute;;top:-305px; right:-416px; text-align: center; color:#979797; background:url(indexImge/masked-base.png);}
+  /*  弹出的输入框间距 */
+  .modal-body div{margin-bottom: 10px;}
+</style>
+</head>
+
+<body>
+
+<!-- 顶部导航条 -->
+<div class="navbar navbar-inverse" role="navigation" id="topNav">
+<div class="navbar-header">
+  <h4>首页</h4>
+</div>
+	<ul class="nav navbar-nav">
+	 	<li><a href="##" data-toggle="modal" data-target="#normalUser">用户登录</a></li>
+    <li><a href="##"  class="dropdown-toggle" data-toggle="modal" data-target="#member">会员登陆</a></li>
+       <li><a href="##" data-toggle="modal" data-target="#administrator">管理员登陆</a></li>   
+       <li><a href="##" data-toggle="modal" data-target="#subscribe">邮箱订阅服务</a></li>
+	</ul>
+    
+<!-- 顶部导航栏的搜索框 -->
+  <form action="##" class="navbar-form navbar-right" rol="search">
+      <div class="form-group">
+   	      <input type="text" class="form-control" placeholder="请输入关键词" />
+          <span class="glyphicon glyphicon-search" id="searchLogo"></span>
+   	  </div>
+  </form>
+</div>
+
+
+<!-- 顶部导航栏的弹出框 -->
+  <!-- 顶部导航栏的弹出框 -->
+    <!-- 用户登录弹出框 -->
+<div class="modal fade" id="normalUser" tabindex="-1" role="dialog" aria-labelledby="modal-label"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">X</span></button>
+                    <h4 class="modal-title" id="modal-label">用户登录</h4>
+                </div>
+                  <div class="modal-body">
+                    <!-- 用户登录 -->
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">用户账号 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">用户密码 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                   <!-- END -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- 会员登录弹出框 -->
+        <div class="modal fade" id="member" tabindex="-1" role="dialog" aria-labelledby="modal-label"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">X</span></button>
+                    <h4 class="modal-title" id="modal-label">会员登陆</h4>
+                </div>
+                  <div class="modal-body">
+                    <!-- 用户登录 -->
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">会员账号 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">会员密码 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                   <!-- END -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 管理员登录弹出框 -->
+
+     <div class="modal fade" id="administrator" tabindex="-1" role="dialog" aria-labelledby="modal-label"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">X</span></button>
+                    <h4 class="modal-title" id="modal-label">管理员登录</h4>
+                </div>
+                  <div class="modal-body">
+                    <!-- 用户登录 -->
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">管理员账号 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">管理员密码 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                   <!-- END -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 邮箱订阅弹出框 -->
+
+     <div class="modal fade" id="subscribe" tabindex="-1" role="dialog" aria-labelledby="modal-label"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">X</span></button>
+                    <h4 class="modal-title" id="modal-label">邮箱订阅</h4>
+                </div>
+                  <div class="modal-body">
+                    <!-- 用户登录 -->
+                     <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">邮箱账号 :</button>
+                        </span>
+                         <input type="text" class="form-control">
+                   </div>
+                   <!-- END -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 头部图片 -->
+<div id="headerPicture">
+	<img src="indexImge/header.jpg" alt="headerPicture" />
+</div>
+
+<!-- 子页面导航条 -->
+<div class="navbar navbar-inverse " role="navigation" id="subpageBar">
+  <ul class="nav navbar-nav">
+    <!-- fist -->
+    <li class="dropdown subpageBar">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle" style="padding-right:113px;padding-left:53px;">海洋科学<span class="caret"></span></a>
+            <ul class="dropdown-menu subpageList">
+            <li><a href="##">科普知识</a></li>
+            <li><a href="##">军事海洋战略与发展</a></li>           
+            <li><a href="##">海洋资源环境</a></li>            
+            <li><a href="##">极地海洋与全球变化</a></li>
+            <li><a href="##">涉海期刊学术资料</a></li>
+            </ul>
+    </li>
+    <!-- second -->
+    <li class="dropdown subpageBar">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle" style="padding-right:113px;">科技地图<span class="caret"></span></a>
+            <ul class="dropdown-menu subpageList">
+            <li><a href="##">各国发展地图</a></li>
+            <li><a href="##">机构发展地图</a></li>
+            <li><a href="##">研究热点地图</a></li>
+            </ul>
+    </li>
+    <!-- third -->
+    <li class="dropdown subpageBar">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle" style="padding-right:113px;">资源信息提供<span class="caret"></span></a>
+            <ul class="dropdown-menu subpageList">
+            <li><a href="##">期刊论文</a></li>
+            <li><a href="##">专著</a></li>
+            <li><a href="##">报告</a></li>
+            <li><a href="##">专利</a></li>
+            <li><a href="##">课题</a></li>
+            <li><a href="##">合作机构</a></li>
+            <li><a href="##">资源导航</a></li>
+            <li><a href="##">专家库</a></li>
+            </ul>
+    </li>
+    <!-- fourth -->
+    <li class="dropdown subpageBar">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle" style="padding-right:113px;">情报产品<span class="caret"></span></a>
+            <ul class="dropdown-menu subpageList">
+            <li><a href="##">研究报告</a></li>
+            <li><a href="##">简报</a></li>
+            </ul>
+    </li>
+    <!-- fifth -->
+    <li class="dropdown subpageBar" id="noRightBottom">    <!-- id为取消右分割线 -->
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle" style="padding-right:113px;">互动专栏<span class="caret"></span></a>
+            <ul class="dropdown-menu subpageList">
+            <li><a href="##">网路调查</a></li>
+            <li><a href="##">留言板</a></li>
+            <li><a href="##">征稿启事</a></li>
+            </ul>
+    </li> 
+  </ul>
+</div>
+
+<!-- 最新文章推荐区 -->
+<div id="newestPush">
+    <div id="newestPushImg-left"><img id="newestPushImg-left-img" src="indexImge/newestPushImg-left.2.jpg" /></div>
+    <div id="newestPushImg-right-top"><img src="indexImge/newestPushImg-right-top.jpg" /></div>
+    <div id="newestPushImg-right-middle"><img src="indexImge/newestPushImg-right-middle.jpg" /></div>
+    <div id="newestPushImg-right-buttom"><img src="indexImge/newestPushImg-right-buttom.jpg" /></div>
+</div>
+
+<!-- 精选模块分隔条 -->
+<div id="dividingStrip">
+    <div id="dividerBox">精选模块</div>
+    <div id="strip">
+      <span id="passWords">为您推荐以下内容：期刊论文 研究机构 项目库 专家库</span>
+    <div>
+</div>
+
+<!-- 精选模块左-->
+  <!-- TAB切页-->
+<div id="TabLeft">
+<ul class="nav nav-pills">
+      <li class="active" id="tabL1"><a href="##">期刊论文</a></li>   <!-- id为切图片暂时使用-->
+      <li id="tabL2"><a href="##">研究机构</a></li>
+      <li id="tabL3"><a href="##">项目库</a></li>
+      <li id="tabL4"><a href="##">专家库</a></li>
+</ul>
+</div>
+
+  <!-- 主要内容 -->
+
+  <!-- 论文期刊 -->
+<div class="container" id="content">
+    <div class="row">
+    <div class="col-xs-12 col-md-6">
+       <div class="contentBorder">
+     	 <a href="#" class="thumbnail">
+        	<img id="contentImgLeft" src="indexImge/contentLeft1.jpg" style="height: 189px; width: 100%; display: block;" alt="">
+     	 </a>
+    	 <div class="caption">
+       		 <h3>海洋科学</h3>
+        	 <p>海洋科学是研究海洋的自然现象、性质及其变化规律，以及与开发利用海洋有关的知识体系。它的研究对象是占地球表面71％的海洋...</p>
+       		 <p>
+           <a href="##" class="btn btn-primary btnMargin">了解更多</a>
+           </p>
+         </div>
+       </div>
+    </div>  
+    <div class="col-xs-12 col-md-6 contentRight">
+      <div class="contentBorder">
+		  <a href="#" class="thumbnail">
+			   <img id="contentImgRight" src="indexImge/contentRight1.jpg" style="height: 189px; width: 100%; display: block; alt="">
+		  </a>
+		  <div class="caption">
+			   <h3>海洋科学</h3>
+			   <p>海洋科学是研究海洋的自然现象、性质及其变化规律，以及与开发利用海洋有关的知识体系。它的研究对象是占地球表面71％的海洋...</p>
+			   <p>
+		     <a href="##" class="btn btn-primary btnMargin">了解更多</a>
+			   </p>
+		  </div> 
+      <div>  
+	</div>
+  </div>
+</div>
+
+
+<!-- 精选模块右 列表-->
+<!-- 精选模块右 TAB切页-->
+<div id="contentRightWrap"> <!-- 包裹全部内容 --> 
+<div id="TabRight">
+  <ul class="nav nav-tabs">
+     <li class="active" id="list1"><a href="##">科技动态</a></li>   <!-- id为切图片暂时使用-->
+     <li id="list2"><a href="##">情报产品</a></li>
+     <li id="list3"><a href="##">友情链接</a></li>
+  </ul>
+</div>
+
+<!-- 精选模块右 内容-->
+ <ul class="media-list" id="contentlistRight">
+    <li class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" src="indexImge/home1 (1).jpg" style="height:55px; width:60px; display: block; alt="" id="listImg1">       <!-- id为切图片暂时使用-->
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">科技动态</h4>
+            <div>Small Market and St. Sebastian's </div>
+        </div>
+    </li>
+     <li class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" src="indexImge/home1 (2).jpg" style="height:55px; width:60px; display: block; alt=""  id="listImg2">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">科技动态</h4>
+            <div>Small Market and St. Sebastian's</div>
+        </div>
+    </li>
+     <li class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" src="indexImge/home1 (3).jpg" style="height:55px; width:60px; display: block; alt=""  id="listImg3">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">科技动态</h4>
+            <div>Small Market and St. Sebastian's  </div>
+        </div>
+    </li>
+    <li class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" src="indexImge/home1 (4).jpg" style="height:55px; width:60px; display: block; alt=""  id="listImg4">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">科技动态</h4>
+            <div>Small Market and St. Sebastian's </div>
+        </div>
+    </li>
+</ul>
+</div>
+<!-- 精选模块右 内容2-->
+ 
+<!-- 底部分割线 -->
+<div id="footerDivider"></div>
+<!-- 页面底部 -->
+<div id="footer">
+  <p align="center">&nbsp;</p>
+  <p align="center">版权所有 © 2014 XXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+  <p align="center">主管：国家海洋局　主办：中国海洋学会　　出版：海洋出版社</p>
+  <p align="center">编辑部地址: 浙江省海洋局　　邮编：10086   电话：18265384667</p>
+  <p align="center">&nbsp;</p>
+</div>
+
+<!-- 最新文章推荐图片遮罩 -->
+<div id="marsk">
+    <div id="marsk-right-top" >
+        <h2>《海洋》盛宴：沙丁鱼大迁徙</h2>
+        <p>沙丁鱼群结成密集而庞大的阵形，沿着海岸义无反顾地向北进发，各种各样的捕食者呼啸而至，为我们呈现了一场充满力量和杀戮的视觉盛宴。</p>
+    </div>
+    <div id="marsk-right-middle">
+        <h2>最新海洋研究：纳米海洋</h2>
+        <p>国际海洋环境情报センターGODACはJAMSTECが保有する深海映像や海洋データを公开しています。馆内は见学も可能。海に関するイベントも开催!深海生物、热水喷出な...</p>
+    </div>
+    <div id="marsk-right-buttom">
+        <h2>论文：从海洋的诞生说起</h2>
+        <p>海洋是地球上最广阔的水体的总称，海洋的中心部分称作洋，边缘部分称作海，彼此沟通组成统一的水体。...</p>
+    </div>
+</div>
+
+
+
+
+<!-- JavaScript -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    $(function(){
+    /*  精选模块左 TAB切页 */
+       var oTabLeft=$('#TabLeft');
+       oTabLeft.find('li').on('click',function(){
+       oTabLeft.find('li').attr('class','""');
+          $(this).attr('class','active');
+    /*  精选模块左 内容动态加载 */ 
+      var tabId=$(this).attr('id');
+      switch(tabId)
+        {
+            case 'tabL1': $('#contentImgLeft').attr('src','indexImge/contentLeft1.jpg');
+                          $('#contentImgRight').attr('src','indexImge/contentRight1.jpg');
+                        break;
+            case 'tabL2':$('#contentImgLeft').attr('src','indexImge/contentLeft2.jpg');
+                        $('#contentImgRight').attr('src','indexImge/contentRight2.jpg');
+                        break;
+            case 'tabL3':$('#contentImgLeft').attr('src','indexImge/contentLeft3.jpg');
+                        $('#contentImgRight').attr('src','indexImge/contentRight3.jpg');
+                        break;
+            case 'tabL4':$('#contentImgLeft').attr('src','indexImge/contentLeft4.jpg');
+                        $('#contentImgRight').attr('src','indexImge/contentRight4.jpg');
+                        break;
+        }
+      });
+
+     /*  精选模块右 TAB切页 */ 
+       var oTabRight=$('#TabRight');
+       oTabRight.find('li').on('mouseover',function(){
+       oTabRight.find('li').attr('class','""');
+       $(this).attr('class','active');
+    /*  精选模块右 内容动态加载 */ 
+      var tabListId=$(this).attr('id');
+        switch(tabListId)
+          {
+            case 'list1': $('#listImg1').attr('src','indexImge/home1 (1).jpg');
+                          $('#listImg2').attr('src','indexImge/home1 (2).jpg');
+                          $('#listImg3').attr('src','indexImge/home1 (3).jpg');
+                          $('#listImg4').attr('src','indexImge/home1 (4).jpg');
+                          break;
+            case 'list2':$('#listImg1').attr('src','indexImge/people(1).jpg');
+                         $('#listImg2').attr('src','indexImge/people(2).jpg');
+                         $('#listImg3').attr('src','indexImge/people(3).jpg');
+                         $('#listImg4').attr('src','indexImge/people(4).jpg');
+                         break;
+            case 'list3':$('#listImg1').attr('src','indexImge/linek1 (1).jpg');
+                         $('#listImg2').attr('src','indexImge/linek1 (2).jpg');
+                         $('#listImg3').attr('src','indexImge/linek1 (3).jpg');
+                         $('#listImg4').attr('src','indexImge/linek1 (4).jpg');
+                          break;
+         }
+        });
+     /*  遮罩切换 */
+     $('#marsk-right-top').on({'mouseover':function(){
+                                  $(this).css("background", "url(indexImge/blue.png)");
+                                },
+                              'mouseout':function(){
+                                  $(this).css("background", "url(indexImge/masked-base.png)");
+                               }
+                             });
+
+    $('#marsk-right-middle').on({'mouseover':function(){
+                                  $(this).css("background", "url(indexImge/blue.png)");
+                                },
+                              'mouseout':function(){
+                                  $(this).css("background", "url(indexImge/masked-base.png)");
+                               }
+                             });
+
+    $('#marsk-right-buttom').on({'mouseover':function(){
+                                  $(this).css("background", "url(indexImge/blue.png)");
+                                },
+                              'mouseout':function(){
+                                  $(this).css("background", "url(indexImge/masked-base.png)");
+                               }
+                             });
+     /*  推荐区域左侧图片切换 */
+   var curIndex=0; 
+   var timeInterval=4000; 
+   var arr=new Array(); 
+   arr[0]="indexImge/newestPushImg-left.2.jpg"; 
+   arr[1]="indexImge/newestPushImg-left.jpg"; 
+   arr[2]="indexImge/newestPushImg-left3.jpg"; 
+   setInterval(changeImg,timeInterval);  
+   function changeImg() 
+    { 
+    var obj=$('#newestPushImg-left-img'); 
+    if (curIndex==arr.length-1)  
+    { 
+        curIndex=0; 
+    } 
+    else 
+    { 
+        curIndex+=1; 
+    } 
+    obj.attr('src',arr[curIndex])
+    } 
+
+})
+</script>
+</body>
+</html>

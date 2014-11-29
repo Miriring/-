@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>后台管理</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+    <!-- css重置 -->
+    body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td 
+    {margin:0;padding:0;} 
+    a{text-decoration:none;
+	color="#0CF"}
+    a:hover{text-decoration:none;}
+    li{list-style: none;}
+    table {border-collapse:collapse;border-spacing:0;} 
+    body{ padding-bottom: 40px;font-family:"微软雅黑"; font-size:18px;}
+    h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}  
+    #header ul{font-size:25px; background-color:#222222;float:left; width: 100%;line-height:50px; }
+    #header li{float: left; color:#0CF;}
+    #top1{ font-size:30px;padding-left: 10px;}
+    #top2{margin-left: 100px;}
+    #top3{margin-left: 600px;}
+    #top4{margin-left: 50px;}
+    #slideBar{width:300px;border-right:2px solid blue; padding-top: 35px; margin-left: -30px;}
+    #slideBar h2{height: 35px; background-color:#ff99ff;cursor:pointer; line-height: 30px; padding-left: 5px; }
+    .expand li{background-color:#99ccff; padding-left: 5px;cursor:pointer; border-bottom: 1px solid #6633FF;}
+    #contentName{ position:absolute; left:300px;top:65px; font-size:24px;}
+    .hr{ position:absolute;top:70px; left:300px;top:110px;display: block;;height: 10px;width:100%; background-color:#00CCCC;}
+    #content{position: absolute;left: 300px;top:150px;width:100%;}
+    .panel-title{font-size:20px;padding-left:20px;}
+    #footer{width:100%; height: 100px; background-color:#FF99FF;  margin-top:100px; text-align: center;;}
+    </style>
+
+</head>
+
+<body>
+<!-- 顶部导航 -->
+    <div id='header'>
+        <ul>
+            <li id='top1'>后台管理</li>
+            <li id='top2'><a href="#"><span  class="glyphicon glyphicon-home"></span>返回网站首页</a></li>
+            <li id='top3'>您好! Admin</li>
+            <li id='top4'><a href="#">退出</a></li>
+        </ul>
+    </div>
+<!-- 侧边栏 -->
+	<div id="slideBar">
+    	<ul id='manageList'>
+            <li>
+                <h2>常规管理</h2>
+                <ul class='expand'>
+                    <li>配置信息</li>
+                    <li>基本参数设置</li>
+                </ul>   
+            </li>
+             <li>
+                <h2>资源管理</h2>
+                <ul class='expand'>
+                    <li>地图信息</li>
+                    <li>期刊论文</li>
+                    <li>项目课题</li>
+                    <li>研究报告</li>
+                    <li>合作机构</li>
+                    <li>专家库</li>
+                </ul>   
+            </li>
+             <li>
+                <h2>互动项目</h2>
+                <ul class='expand'>
+                    <li>网络调查</li>
+                    <li>征稿启事</li>
+                    <li>留言板</li>
+                    <li>研究报告</li>
+                </ul>   
+            </li>
+            <li>
+                <h2>用户管理</h2>
+                <ul class='expand'>
+                    <li>信息修改</li>
+                    <li>会员管理</li>
+                </ul>   
+            </li>
+        </ul>
+    <!-- 主要内容 -->
+    <p id='contentName'>管理界面</p>
+    <span class='hr'></span>
+    <div id='content'>
+         <div class="panel panel-default">
+             <div class="panel-heading">
+                    <h3 class="panel-title">详细信息</h3>
+             </div>
+             <div class="panel-body">
+                    <img src="backstageImage/QQ截图20141118215300.jpg" />
+             </div>
+        </div>
+    </div>
+    <!-- 尾部 -->
+    <div id='footer'>
+        <p>网站版权信息</p>
+        <p>归属：海洋科学院</p>
+        <p>版权：影沫</p>
+    </div>
+</div>
+   
+    </div>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    $(function(){
+        var onOff=1;
+        var click=0;
+        var changContentName='';
+        $('.expand').hide();
+        $('#manageList').find('h2').on('click',function(){
+            if(onOff)
+            {
+                $(this).siblings().fadeOut();
+                onOff=0;
+            }
+            else
+            {
+                 $(this).siblings().fadeIn();
+                 onOff=1;
+            }
+        });
+        
+          $('.expand').find('li').on('click',function(){
+            click=$(this);
+            $('.expand').find('li').css('background-color','#99ccff');
+            $(this).css('background-color','#6892ed');
+            changContentName=$(this).text();
+            $('.panel-title').html(changContentName);
+          });
+        $('.expand').find('li').on('mouseover',function(){
+            $('.expand').find('li').css('background-color','#99ccff');
+            click.css('background-color','#6892ed');
+            $(this).css('background-color','#6892ed');
+         });
+    })
+</script>
+</body>
+</html>
